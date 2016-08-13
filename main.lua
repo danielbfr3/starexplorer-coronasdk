@@ -120,3 +120,20 @@ local function createAsteroid()
 
     newAsteroid:applyTorque( math.random( -6, 6 ) )
 end
+
+local function fireLaser()
+    local newLaser = display.newImageRect( mainGroup, objectSheet, 4, 14, 40 )
+    physics.addBody( newLaser, "dynamic", { isSensor = true } )
+    newLaser.isBullet = true
+    newLaser.myName = "laser"
+
+    newLaser.x = ship.x
+    newLaser.y = ship.y
+    newLaser:toBack()
+
+    transition.to( newLaser, { y = -40, time = 500 }, 
+        onComplete = function() display.remove( newLaser ) end )
+    
+end
+
+ship:addEventListener( "tap", fireLaser )
