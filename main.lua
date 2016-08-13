@@ -137,7 +137,7 @@ end
 
 ship:addEventListener( "tap", fireLaser )
 
-local function dradShip( event )
+local function dragShip( event )
     local ship = event.target
     local phase = event.target
 
@@ -156,3 +156,5 @@ local function dradShip( event )
 
     return true -- Prevent touch propagation to underlying objects
 end
+
+ship:addEventListener( "touch", dragShip )
