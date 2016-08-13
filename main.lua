@@ -133,7 +133,26 @@ local function fireLaser()
 
     transition.to( newLaser, { y = -40, time = 500, 
         onComplete = function() display.remove( newLaser ) end } )
-    
 end
 
 ship:addEventListener( "tap", fireLaser )
+
+local function dradShip( event )
+    local ship = event.target
+    local phase = event.target
+
+    if ( phase == "began" ) then
+        -- Set touch focus on ship
+        display.currentStage:setFocus( ship )
+        -- Store initial offset position
+        ship.touchOffsetX = event.x - ship.x
+    elseif ( phase == "moved" ) then
+        -- Move the sjip to the new touch position
+        ship.x = event.x - ship.touchOffsetX
+    elseif ( phase == "ended" or phase == "cancelled" ) then
+        -- Release touch focus on the ship
+        display.currentStage:setFocus( nil )
+    end
+
+    return true -- Prevent touch propagation to underlying objects
+end
