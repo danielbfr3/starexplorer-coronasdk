@@ -64,3 +64,31 @@ local gameLoopTimer
 local livesText
 local scoreText
 
+local backGroup = display.newGroup()
+local mainGroup = display.newGroup()
+local uiGroup = display.newGroup()
+
+local background = display.newImageRect( backGroup, "assets/background.png", 800, 1400 )
+background.x = display.contentCenterX
+background.y = display.contentCenterY
+
+-- group, imagesheet, position in array os img, size x and y
+ship = display.newImageRect( mainGroup, objectSheet, 4, 98, 79 )
+
+ship.x = display.contentCenterX
+ship.y = display.contentHeight - 100
+physics.addBody( ship, { radius = 30 } )
+ship.myName = "ship"
+
+-- Show UI
+livesText = display.newText( uiGroup, "Lives: " .. lives, 200, 80, native.systemFont, 36 )
+scoreText = display.newText( uiGroup, "Score: " .. score, 400, 80, native.systemFont, 36 )
+
+-- Hide system bar
+display.setStatusBar( display.hiddenStatusBar )
+
+local function updateText()
+    livesText.text = "Lives: " .. lives
+    scoreText.text = "Score: " .. score
+end
+
