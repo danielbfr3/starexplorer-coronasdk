@@ -122,7 +122,7 @@ local function createAsteroid()
 end
 
 local function fireLaser()
-    local newLaser = display.newImageRect( mainGroup, objectSheet, 4, 14, 40 )
+    local newLaser = display.newImageRect( mainGroup, objectSheet, 5, 14, 40 )
     physics.addBody( newLaser, "dynamic", { isSensor = true } )
     newLaser.isBullet = true
     newLaser.myName = "laser"
@@ -131,8 +131,8 @@ local function fireLaser()
     newLaser.y = ship.y
     newLaser:toBack()
 
-    transition.to( newLaser, { y = -40, time = 500 }, 
-        onComplete = function() display.remove( newLaser ) end )
+    transition.to( newLaser, { y = -40, time = 500, 
+        onComplete = function() display.remove( newLaser ) end } )
     
 end
 
