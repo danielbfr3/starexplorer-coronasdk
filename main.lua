@@ -199,38 +199,38 @@ local function onCollision( event )
     if ( event.phase == "began" ) then
         local obj1 = event.object1
         local obj2 = event.object2
-    end
 
-    if ( ( obj1.myName == "laser" and obj2.myName == "asteroid" ) or
-           ( obj1.myName == "asteroid" and obj2.myName == "laser" ) ) then
-        -- Remove both the laser and asteroid
-        display.remove( obj1 )
-        display.remove( obj2 )
+        if ( ( obj1.myName == "laser" and obj2.myName == "asteroid" ) or
+            ( obj1.myName == "asteroid" and obj2.myName == "laser" ) ) then
+            -- Remove both the laser and asteroid
+            display.remove( obj1 )
+            display.remove( obj2 )
 
-        for i = #asteroidsTable, 1, -1 do
-            if ( asteroidsTable[i] == obj1 or asteroidsTable[i] == obj2 ) then
-                table.remove( asteroidsTable, i )
-                break
+            for i = #asteroidsTable, 1, -1 do
+                if ( asteroidsTable[i] == obj1 or asteroidsTable[i] == obj2 ) then
+                    table.remove( asteroidsTable, i )
+                    break
+                end
             end
-        end
 
-        -- Increase score
-        score = score + 100
-        scoreText.text = "Score: " .. score
-    elseif ( ( obj1.myName == "ship" and obj2.myName == "asteroid" ) or
-           ( obj1.myName == "asteroid" and obj2.myName == "ship" ) ) then
-        if ( died == false ) then
-            died = true
+            -- Increase score
+            score = score + 100
+            scoreText.text = "Score: " .. score
+        elseif ( ( obj1.myName == "ship" and obj2.myName == "asteroid" ) or
+            ( obj1.myName == "asteroid" and obj2.myName == "ship" ) ) then
+            if ( died == false ) then
+                died = true
 
-            -- Update lives
-            lives = lives - 1
-            livesText.text = "Lives: " .. lives
+                -- Update lives
+                lives = lives - 1
+                livesText.text = "Lives: " .. lives
 
-            if ( lives == 0 ) then
-                display.remove( ship )
-            else
-                ship.alpha = 0
-                timer.performWithDelay( 1000, restoreShip )
+                if ( lives == 0 ) then
+                    display.remove( ship )
+                else
+                    ship.alpha = 0
+                    timer.performWithDelay( 1000, restoreShip )
+                end
             end
         end
     end
