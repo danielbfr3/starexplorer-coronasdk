@@ -139,7 +139,7 @@ ship:addEventListener( "tap", fireLaser )
 
 local function dragShip( event )
     local ship = event.target
-    local phase = event.target
+    local phase = event.phase
 
     if ( phase == "began" ) then
         -- Set touch focus on ship
@@ -158,3 +158,4 @@ local function dragShip( event )
 end
 
 ship:addEventListener( "touch", dragShip )
+
