@@ -1,4 +1,3 @@
--- Menu Scene
 
 local composer = require( "composer" )
 
@@ -9,13 +8,7 @@ local scene = composer.newScene()
 -- the scene is removed entirely (not recycled) via "composer.removeScene()"
 -- -----------------------------------------------------------------------------------
 
-local function gotoGame()
-	composer.gotoScene( "game" )
-end
 
-local function gotoHighScores()
-	composer.gotoScene( "highScores" )
-end
 
 
 -- -----------------------------------------------------------------------------------
@@ -28,24 +21,8 @@ function scene:create( event )
 	local sceneGroup = self.view
 	-- Code here runs when the scene is first created but has not yet appeared on screen
 
-	local background = display.newImageRect( sceneGroup, "assets/background.png", 800, 1400 )
-	background.x = display.contentCenterX
-	background.y = display.contentCenterY
-
-	local title = display.newImageRect( sceneGroup, "assets/title.png", 500, 80 )
-	title.x = display.contentCenterX
-	title.y = 200
-
-	local playButton = display.newText( sceneGroup, "Play", display.contentCenterX, 700, native.systemFont, 44 )
-	playButton:setFillColor( 0.75, 0.86, 1 )
-
-	local highScoreButton = display.newText( sceneGroup, "High Scores", display.contentCenterX, 810, native.systemFont, 44 )
-	highScoreButton:setFillColor( 0.75, 0.78, 1 )
-
 end
 
-playButton:addEventListener( "tap", gotoGame )
-highScoreButton:addEventListener( "tap", gotoHighScores )
 
 -- show()
 function scene:show( event )
