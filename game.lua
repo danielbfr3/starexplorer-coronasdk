@@ -154,7 +154,24 @@ local function gameLoop()
 end
 
 local function endGame()
-    composer.gotoScene( "menu", { time=800, effect="crossFade" } )
+	composer.setVariable( "finalScore", score )
+	composer.removeScene( "highscores" )
+    composer.gotoScene( "highScores", { time=800, effect="crossFade" } )
+end
+
+local function restoreShip()
+    ship.isBodyActive = false
+    ship:setLinearVelocity( 0, 0 )
+    ship.x = display.contentCenterX
+    ship.y = display.contentHeight - 100
+
+    -- Fade in the ship
+    transition.to( ship, { alpha = 1, time = 4000,
+        onComplete = function() 
+            ship.isBodyActive = true
+            died = false
+        end
+    } )
 end
 
 local function onCollision( event )
