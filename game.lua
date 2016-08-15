@@ -157,7 +157,7 @@ local function endGame()
     composer.gotoScene( "menu", { time=800, effect="crossFade" } )
 end
 
-ocal function onCollision( event )
+local function onCollision( event )
     if ( event.phase == "began" ) then
         local obj1 = event.object1
         local obj2 = event.object2
@@ -268,6 +268,7 @@ function scene:hide( event )
 
 	if ( phase == "will" ) then
 		-- Code here runs when the scene is on screen (but is about to go off screen)
+		timer.cancel( gameLoopTimer )
 
 	elseif ( phase == "did" ) then
 		-- Code here runs immediately after the scene goes entirely off screen
