@@ -1,6 +1,6 @@
 local composer = require( "composer" )
 
-display.setStatusBar( dislpay.HiddenStatusBar )
+display.setStatusBar( display.HiddenStatusBar )
 
 math.randomseed( os.time() )
 
